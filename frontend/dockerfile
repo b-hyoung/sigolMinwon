@@ -1,0 +1,12 @@
+FROM node:18
+
+WORKDIR /app
+
+# 먼저 package.json만 복사해서 npm install 분리
+COPY package*.json ./
+RUN npm install --prefer-offline --legacy-peer-deps
+# 이후 소스 전체 복사
+COPY . .
+
+EXPOSE 5173
+CMD ["npm", "run", "dev"]

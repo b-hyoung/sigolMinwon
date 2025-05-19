@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+    - ./frontend:/app
+    - /app/node_modules  # ✅ node_modules는 컨테이너 내부 전용으로
+    working_dir: /app
+    command: npm run dev
+    depends_on:
+      - backend
+    env_file:
+      - .env 
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - hackathon-mysql
+    env_file:
+      - .env  # .env 파일 사용
+
+
+  hackathon-mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    env_file:
+      - ./backend/.env  # .env 파일 사용
+
+volumes:
+  db-data:
