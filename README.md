@@ -1,2 +1,5 @@
-# hackathon-setUp
-해커톤 도커셋업 미리해두기
+FrontEnd : React + tailwindCss
+Backend : FastApi 
+개발환경 : docker
+
+
