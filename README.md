@@ -1,5 +1,5 @@
-FrontEnd : React + tailwindCss
-Backend : FastApi 
-개발환경 : docker
+## 🔧 개발 환경 (Setup)
 
-
+- **Frontend**: React + TailwindCSS  
+- **Backend**: FastAPI  
+- **Dev Environment**: Docker 기반 컨테이너 개발
