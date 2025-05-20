@@ -7,8 +7,11 @@ WORKDIR /app
 # 필요한 패키지 설치를 위해 requirements.txt를 작업 디렉토리로 복사
 COPY requirements.txt ./
 
-# 의존성 설치
-RUN pip install --no-cache-dir -r requirements.txt
+# virtualenv 설치 및 가상환경 생성
+RUN pip install --no-cache-dir virtualenv && \
+    virtualenv venv && \
+    . venv/bin/activate && \
+    pip install --no-cache-dir -r requirements.txt
 
 # 나머지 애플리케이션 코드를 작업 디렉토리로 복사
 COPY . .
@@ -16,5 +19,5 @@ COPY . .
 # 애플리케이션이 실행되는 포트 노출
 EXPOSE 8000
 
-# FastAPI 애플리케이션 실행 명령 정의
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# FastAPI 애플리케이션 실행 명령 정의 (가상환경 활성화 후 실행)
+CMD ["/bin/sh", "-c", ". venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port 8000"]
