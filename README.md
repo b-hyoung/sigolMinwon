@@ -18,7 +18,7 @@
 | 위치 기반 | 네이버 지도 API |
 | 인증 시스템 | 아임포트 휴대폰 본인인증 |
 | 개발환경 | Docker (컨테이너 기반 개발 및 배포) |
-| 디자인 |[피그마] 클릭 시 이동(https://www.figma.com/design/UkxLT3g3P5suimQzgmGCqq/Untitled?node-id=0-1)
+| 디자인 |[피그마](https://www.figma.com/design/UkxLT3g3P5suimQzgmGCqq/Untitled?node-id=0-1) / 클릭 시 이동
 ---
 ## 👥 기여자 및 프로젝트 인원
 
